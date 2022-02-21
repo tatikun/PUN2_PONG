@@ -7,6 +7,9 @@ public class MainScene : MonoBehaviourPunCallbacks
 {
     void Start()
     {
+        // プレイヤー自身の名前を"Player"に設定する
+        PhotonNetwork.NickName = "Player";
+
         // PhotonServerSettingsの設定内容を使ってマスターサーバーに接続する
         PhotonNetwork.ConnectUsingSettings();
     }
