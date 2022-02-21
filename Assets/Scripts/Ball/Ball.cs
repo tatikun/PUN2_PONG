@@ -7,12 +7,6 @@ public class Ball : MonoBehaviourPunCallbacks
     private string goal1p_strname = "goal_1p";
     private string goal2p_strname = "goal_2p";
     private string goal_strtag = "Goal";
-    private string border_strtag = "Border";
-
-    public void Init(Vector3 origin, float angle){
-        transform.position = origin;
-        velocity = 9f * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle));
-    }
 
     private void Start()
     {
@@ -22,7 +16,7 @@ public class Ball : MonoBehaviourPunCallbacks
     private void Update()
     {
         if(PhotonNetwork.IsMasterClient){
-            transform.position += velocity;
+            transform.position += velocity * Time.deltaTime;
         }
     }
 
@@ -37,11 +31,11 @@ public class Ball : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(PhotonNetwork.IsMasterClient){
-            if(other.tag.Equals("Goal")){
+            if(other.tag.Equals(goal_strtag)){
                     ResetPositionAndVector();
-                if(other.name == "goal_1p"){
+                if(other.name.Equals(goal1p_strname)){
                     PhotonNetwork.CurrentRoom.AddScore(1,1);
-                }else if(other.name == "goal_2p"){
+                }else if(other.name.Equals(goal2p_strname)){
                     PhotonNetwork.CurrentRoom.AddScore(2,1);
                 }
             }

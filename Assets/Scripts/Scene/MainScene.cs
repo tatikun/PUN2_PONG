@@ -20,16 +20,26 @@ public class MainScene : MonoBehaviourPunCallbacks
 
     // ゲームサーバーへの接続が成功したときに呼ばれるコールバック
     public override void OnJoinedRoom(){
-        if(PhotonNetwork.CurrentRoom.PlayerCount == 2){
+
+
+        var position = PhotonNetwork.LocalPlayer.ActorNumber == 1 ? new Vector3(playerDefaultPositionX, 0) : new Vector3(-playerDefaultPositionX, 0);
+        PhotonNetwork.Instantiate("Player",position,Quaternion.identity);
+        joinedRoom = true;
+    }
+        
+
+    public override void OnLeftRoom(){
+        joinedRoom = false;
+    }
+    
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        if(PhotonNetwork.IsMasterClient){
             PhotonNetwork.Instantiate("Ball",Vector3.zero,Quaternion.identity);
             PhotonNetwork.CurrentRoom.SetScore(1,0);
             PhotonNetwork.CurrentRoom.SetScore(2,0);
             PhotonNetwork.CurrentRoom.SendRoomProperties();
         }
-
-        var position = PhotonNetwork.LocalPlayer.ActorNumber == 1 ? new Vector3(playerDefaultPositionX, 0) : new Vector3(-playerDefaultPositionX, 0);
-        PhotonNetwork.Instantiate("Player",position,Quaternion.identity);
-        joinedRoom = true;
     }
 
     private void LateUpdate() {

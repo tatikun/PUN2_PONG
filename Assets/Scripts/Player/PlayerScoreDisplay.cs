@@ -19,6 +19,9 @@ public class PlayerScoreDisplay : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // ルームに参加していない場合には更新処理を行わない
+        if(!PhotonNetwork.InRoom){return;}
+
         elapsedTime += Time.deltaTime;
         if(elapsedTime > 0.1f){
             elapsedTime = 0f;
