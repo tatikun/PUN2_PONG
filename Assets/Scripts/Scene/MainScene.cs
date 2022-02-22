@@ -50,7 +50,7 @@ public class MainScene : MonoBehaviourPunCallbacks
 
   private void LateUpdate()
   {
-    if (joinedRoom && PhotonNetwork.IsMasterClient)
+    if (joinedRoom)
     {
       PhotonNetwork.CurrentRoom.SendRoomProperties();
     }

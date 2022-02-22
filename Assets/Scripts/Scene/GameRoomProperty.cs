@@ -16,6 +16,8 @@ public static class GameRoomProperty
 
     public static void AddScore(this Room room,int id,int value){
         propsToSet[ScoreKey + id.ToString()] = room.GetScore(id) + value;
+        room.SetCustomProperties(propsToSet);
+        propsToSet.Clear();
     }
 
     public static void SendRoomProperties(this Room room){

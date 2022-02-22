@@ -8,6 +8,14 @@ public class PlayerNameDisplay : MonoBehaviourPunCallbacks
     {
         var nameLabel = GetComponent<TextMeshPro>();
         // プレイヤー名とプレイヤーIDを表示する
-        nameLabel.text = $"{photonView.Owner.NickName}({photonView.OwnerActorNr})";
+        //nameLabel.text = $"{photonView.Owner.NickName}({photonView.OwnerActorNr})";
+        if(photonView.IsMine)
+        {
+            nameLabel.text = "You\n▼";
+        }
+        else
+        {
+            nameLabel.text = "";
+        }
     }
 }
