@@ -474,8 +474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f943a3c8f879f41a2bc67b11916f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomidInputField: {fileID: 1975504410}
-  joinRoomButton: {fileID: 1421817186}
+  m_roomidInputField: {fileID: 1975504410}
+  m_joinRoomButton: {fileID: 1421817186}
 --- !u!225 &329525940
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1271,7 +1271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_actorNumber: 1
-  TMPro: {fileID: 916890431}
+  m_TMPro: {fileID: 916890431}
 --- !u!1 &954123882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,7 +1538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_actorNumber: 2
-  TMPro: {fileID: 956740534}
+  m_TMPro: {fileID: 956740534}
 --- !u!1 &1054705958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,8 +2015,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffc8b6908de1d54695e851e89825888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDefaultPositionX: 7.5
-  ballSpawner: {fileID: 1054705959}
+  m_playerDefaultPositionX: 7.5
+  m_ballSpawner: {fileID: 1054705959}
 --- !u!4 &1418492414
 Transform:
   m_ObjectHideFlags: 0
