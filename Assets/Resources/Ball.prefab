@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3476282896100543032}
   - component: {fileID: 2631965006402690335}
   - component: {fileID: 5881415646340426710}
-  - component: {fileID: -3190934286360556435}
+  - component: {fileID: 8592903090752976538}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1799ed9af1fe7e846a0327e161c5823c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
+  speed: 7
 --- !u!114 &2631965006402690335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: -3190934286360556435}
+  - {fileID: 8592903090752976538}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -148,7 +148,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-3190934286360556435
+--- !u!114 &8592903090752976538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,10 +157,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1201815063976099017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: ab9d95ecde1b1dc4cba593eec200d48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1

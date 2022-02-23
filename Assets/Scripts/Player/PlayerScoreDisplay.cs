@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerScoreDisplay : MonoBehaviour
 {
     [SerializeField]
-    private int id = 1;
+    private int actorNumber = 1;
     [SerializeField]
     private TextMeshPro TMPro = default;
     private float elapsedTime;
@@ -31,18 +31,11 @@ public class PlayerScoreDisplay : MonoBehaviour
 
     private void UpadateLabel()
     {
-        //TMPro.text = PhotonNetwork.CurrentRoom.GetScore(id).ToString();
         var players = PhotonNetwork.PlayerList;
         foreach(var player in players){
-            if(id == 1)
+            if(player.ActorNumber == actorNumber)
             {
-                if(player.IsMasterClient)
-                TMPro.text = player.GetScore().ToString();
-            }
-            else if(id == 2)
-            {
-                if(!player.IsMasterClient)
-                TMPro.text = player.GetScore().ToString();
+                TMPro.text = player.GetLostPoint().ToString();
             }
         }
     }

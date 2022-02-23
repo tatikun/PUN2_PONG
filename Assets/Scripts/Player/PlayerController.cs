@@ -20,4 +20,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
     }
     
+    private void LateUpdate() {
+        PhotonNetwork.LocalPlayer.SendHashTable();
+    }
 }

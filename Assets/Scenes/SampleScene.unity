@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a45a86c357a4046aa1909a6e5b1b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
+  actorNumber: 1
   TMPro: {fileID: 916890431}
 --- !u!1 &954123882
 GameObject:
@@ -1537,7 +1537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a45a86c357a4046aa1909a6e5b1b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  actorNumber: 2
   TMPro: {fileID: 956740534}
 --- !u!1 &1054705958
 GameObject:
