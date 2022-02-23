@@ -5,39 +5,42 @@ using UnityEngine;
 public class BallSpawner : MonoBehaviourPunCallbacks
 {
   [SerializeField]
-  private Ball ball;
+  private Ball m_ball;
 
   [SerializeField]
-  private float respawnTime;
-  private float elapsedRespawnTime;
-  private bool setRespawnTimer;
+  private float m_respawnTime; // 再生成時間
+  private float m_elapsedRespawnTime; // 再生成までの経過時間
+  private bool m_setRespawnTimer; // 再生成するかのフラグ
 
   private void Start()
   {
-    setRespawnTimer = false;
+    m_setRespawnTimer = false;
   }
   private void Update()
   {
-    if (setRespawnTimer)
+    if (m_setRespawnTimer)
     {
-      elapsedRespawnTime += Time.deltaTime;
-      if (elapsedRespawnTime >= respawnTime)
+      m_elapsedRespawnTime += Time.deltaTime;
+      if (m_elapsedRespawnTime >= m_respawnTime)
       {
         SpawnBall();
-        elapsedRespawnTime = 0;
-        setRespawnTimer = false;
+        m_elapsedRespawnTime = 0;
+        m_setRespawnTimer = false;
       }
     }
 
   }
+
+  // ボールの生成
   public void SpawnBall()
   {
     if (PhotonNetwork.IsMasterClient)
       PhotonNetwork.Instantiate("Ball", Vector3.zero, Quaternion.identity);
   }
 
+  // ボールの再生成フラグをオンにする
   public void RespwanBall()
   {
-    setRespawnTimer = true;
+    m_setRespawnTimer = true;
   }
 }

@@ -7,24 +7,23 @@ using UnityEngine;
 public class PlayerScoreDisplay : MonoBehaviour
 {
     [SerializeField]
-    private int actorNumber = 1;
+    private int m_actorNumber = 1; // どのプレイヤーの失点を表示するか
     [SerializeField]
-    private TextMeshPro TMPro = default;
-    private float elapsedTime;
+    private TextMeshPro m_TMPro = default;
+    private float m_elapsedTime;
     private void Start()
     {
-        elapsedTime = 0f;
+        m_elapsedTime = 0f;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         // ルームに参加していない場合には更新処理を行わない
         if(!PhotonNetwork.InRoom){return;}
 
-        elapsedTime += Time.deltaTime;
-        if(elapsedTime > 0.1f){
-            elapsedTime = 0f;
+        m_elapsedTime += Time.deltaTime;
+        if(m_elapsedTime > 0.1f){
+            m_elapsedTime = 0f;
             UpadateLabel();
         }
     }
@@ -33,9 +32,9 @@ public class PlayerScoreDisplay : MonoBehaviour
     {
         var players = PhotonNetwork.PlayerList;
         foreach(var player in players){
-            if(player.ActorNumber == actorNumber)
+            if(player.ActorNumber == m_actorNumber)
             {
-                TMPro.text = player.GetLostPoint().ToString();
+                m_TMPro.text = player.GetLostPoint().ToString();
             }
         }
     }

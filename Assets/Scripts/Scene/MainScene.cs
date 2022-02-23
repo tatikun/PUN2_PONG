@@ -6,13 +6,13 @@ using UnityEngine;
 public class MainScene : MonoBehaviourPunCallbacks
 {
   [SerializeField]
-  private float playerDefaultPositionX = 0f;
-  private bool joinedRoom = false;
+  private float m_playerDefaultPositionX = 7.5f; // プレイヤーの初期X座標
+  private bool m_joinedRoom = false; // ルームへ参加しているかどうか
   [SerializeField]
-  private BallSpawner ballSpawner = default;
+  private BallSpawner m_ballSpawner = default; // ボール生成オブジェクト
   void Start()
   {
-    joinedRoom = false;
+    m_joinedRoom = false;
     // プレイヤー自身の名前を"Player"に設定する
     PhotonNetwork.NickName = "Player";
 
@@ -23,24 +23,21 @@ public class MainScene : MonoBehaviourPunCallbacks
   // ゲームサーバーへの接続が成功したときに呼ばれるコールバック
   public override void OnJoinedRoom()
   {
-
-
-    var position = PhotonNetwork.LocalPlayer.ActorNumber == 1 ? new Vector3(playerDefaultPositionX, 0) : new Vector3(-playerDefaultPositionX, 0);
+    var position = PhotonNetwork.LocalPlayer.ActorNumber == 1 ? new Vector3(m_playerDefaultPositionX, 0) : new Vector3(-m_playerDefaultPositionX, 0);
     PhotonNetwork.Instantiate("Player", position, Quaternion.identity);
-    joinedRoom = true;
+    m_joinedRoom = true;
   }
-
 
   public override void OnLeftRoom()
   {
-    joinedRoom = false;
+    m_joinedRoom = false;
   }
 
   public override void OnPlayerEnteredRoom(Player newPlayer)
   {
     if (PhotonNetwork.IsMasterClient)
     {
-      ballSpawner.SpawnBall();
+      m_ballSpawner.SpawnBall();
     }
   }
 

@@ -7,39 +7,39 @@ using UnityEngine.UI;
 public class MatchmakingView : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    private TMP_InputField roomidInputField = default;
+    private TMP_InputField m_roomidInputField = default;
     [SerializeField]
-    private Button joinRoomButton = default;
-    private CanvasGroup canvasGroup;
+    private Button m_joinRoomButton = default;
+    private CanvasGroup m_canvasGroup;
     
     void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
+        m_canvasGroup = GetComponent<CanvasGroup>();
         // マスターサーバーに接続するまでは入力できないようにする
-        canvasGroup.interactable = false;
+        m_canvasGroup.interactable = false;
 
         // ルームIDを入力する前派、ルーム参加ボタンを押せないようにする
-        joinRoomButton.interactable = false;
+        m_joinRoomButton.interactable = false;
 
-        roomidInputField.onValueChanged.AddListener(OnRoomidInputFieldValueChanged);
-        joinRoomButton.onClick.AddListener(OnJoinRoomButtonClick);
+        m_roomidInputField.onValueChanged.AddListener(OnRoomidInputFieldValueChanged);
+        m_joinRoomButton.onClick.AddListener(OnJoinRoomButtonClick);
     }
 
     public override void OnConnectedToMaster()
     {
         // マスターサーバーに接続したら、入力できるようにする
-        canvasGroup.interactable = true;
+        m_canvasGroup.interactable = true;
     }
 
     private void OnRoomidInputFieldValueChanged(string value)
     {
         // ルームIDを4桁入力したときのみ、ルーム参加ボタンを推せるようにする
-        joinRoomButton.interactable = (value.Length == 4);
+        m_joinRoomButton.interactable = (value.Length == 4);
     }
 
     private void OnJoinRoomButtonClick(){
         // ルーム参加処理中は、入力できないようにする
-        canvasGroup.interactable = false;
+        m_canvasGroup.interactable = false;
 
         // ルームを非公開に設定する (新規でルームを作成する場合)
         var roomOptions = new RoomOptions();
@@ -47,7 +47,7 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
         roomOptions.IsVisible = false;
 
         // ルームIDと同じ名前のルームに参加する (存在しなければ作成してから参加する)
-        PhotonNetwork.JoinOrCreateRoom(roomidInputField.text, roomOptions, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom(m_roomidInputField.text, roomOptions, TypedLobby.Default);
     }
 
     public override void OnJoinedRoom()
@@ -58,7 +58,7 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode,string message){
         // ルームへの参加が失敗したら、再びルームIDを入力できるようにする
-        roomidInputField.text = string.Empty;
-        canvasGroup.interactable = true;
+        m_roomidInputField.text = string.Empty;
+        m_canvasGroup.interactable = true;
     }
 }
