@@ -41,18 +41,6 @@ public class MainScene : MonoBehaviourPunCallbacks
     if (PhotonNetwork.IsMasterClient)
     {
       ballSpawner.SpawnBall();
-      //PhotonNetwork.Instantiate("Ball",Vector3.zero,Quaternion.identity);
-      PhotonNetwork.CurrentRoom.SetScore(1, 0);
-      PhotonNetwork.CurrentRoom.SetScore(2, 0);
-      PhotonNetwork.CurrentRoom.SendRoomProperties();
-    }
-  }
-
-  private void LateUpdate()
-  {
-    if (joinedRoom)
-    {
-      PhotonNetwork.CurrentRoom.SendRoomProperties();
     }
   }
 
